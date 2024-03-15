@@ -1,0 +1,85 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Registration Form</h5>
+
+                    <form [formGroup]="adminForm">
+                        <div class="form-group">
+                            <label for="FirstName">First Name</label>
+                            <input type="text" formControlName="FirstName" class="form-control" id="FirstName">
+                            <div *ngIf="adminForm.controls['FirstName'].errors && adminForm.controls['FirstName'].touched"
+                                class="text-danger">
+                                First Name is required.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="LastName">Last Name</label>
+                            <input type="text" formControlName="LastName" class="form-control" id="LastName">
+                            <div *ngIf="adminForm.controls['LastName'].errors && adminForm.controls['LastName'].touched"
+                                class="text-danger">
+                                Last Name is required.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Email">Email Address</label>
+                            <input type="email" formControlName="Email" class="form-control" id="Email">
+                            <div *ngIf="adminForm.controls['Email'].errors && adminForm.controls['Email'].touched"
+                                class="text-danger">
+                                Enter a valid email address.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Password">Password</label>
+                            <input type="password" formControlName="Password" class="form-control" id="Password">
+                            <div *ngIf="adminForm.controls['Password'].errors && adminForm.controls['Password'].touched"
+                                class="text-danger">
+                                Enter Password Lenght should be more than 6.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="RePassword">RePassword</label>
+                            <input type="password" formControlName="RePassword" class="form-control" id="RePassword">
+                            <div *ngIf="adminForm.controls['RePassword'].errors && adminForm.controls['RePassword'].touched"
+                                class="text-danger">
+                                Password is not matching
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Address">Address</label>
+                            <input type="text" formControlName="Address" class="form-control" id="Address">
+
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="Gender">Gender: &nbsp;</label>
+                            <select id="Gender" formControlName="Gender">
+                                <option value="" selected>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Transgender">Transgender</option>
+                                <option value="Prefer not to say">Prefer not to say</option>
+                            </select>
+                            <div *ngIf="adminForm.controls['Gender'].errors && adminForm.controls['Gender'].touched"
+                                class="text-danger">
+                                Enter Gender
+                            </div>
+                        </div>
+
+                        <br>
+                        <button type="submit" class="btn btn-outline-dark" (click)="register()"
+                            [disabled]="adminForm.invalid">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

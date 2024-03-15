@@ -1,0 +1,40 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+<div class="container mt-4">
+    <h2 class="mb-4 p-2 bg-dark text-white rounded text-center animated-heading">All Bookings</h2>
+    <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-6 mb-4" *ngFor="let booking of bookings; let i = index">
+            <div class="card booking-card">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="card-title mb-0">{{ booking.CustomerName }}</h5>
+                    <h6 class="card-subtitle mt-1 mb-2 text-muted">Booking ID: {{ booking.ReservationID }}</h6>
+                    <img [src]=" booking.processedImage" alt="Car image"
+                        class="card-img-top" >
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><b>Email:</b> {{ booking.CustomerEmail }}</p>
+                    <p class="card-text"><b>Phone Number:</b> {{ booking.CustomerPhoneNumber }}</p>
+                    <p class="card-text"><b>Address:</b> {{ booking.CustomerAddress }}</p>
+                    <p class="card-text"><b>Car Make:</b> {{ booking.CarMake }}</p>
+                    <p class="card-text"><b>Car Model:</b> {{ booking.CarModel }}</p>
+                    <p class="card-text"><b>Pickup Date & Time:</b>{{ booking.PickupDateTime | date:'dd-MM-yyyy' }}</p>
+                    <p class="card-text"><b>Drop-off Date & Time:</b> {{ booking.DropoffDateTime | date:'dd-MM-yyyy' }}
+                    </p>
+                    <div class="reservation-date">{{ booking.ReservationTime | date:'dd-MM-yyyy' }}</div>
+                </div>
+                <div class="card-footer bg-dark">
+                    <button *ngIf="booking.ReservationStatus === 'Accepted'" class="btn btn-success btn-sm" disabled>Accepted</button>
+                    <button *ngIf="booking.ReservationStatus !== 'Accepted'" class="btn btn-primary btn-sm" (click)="acceptReservation(booking)">Accept</button>&nbsp;
+                    <button *ngIf="booking.ReservationStatus !== 'Accepted'" class="btn btn-danger btn-sm" (click)="rejectReservation(booking.ReservationID)">
+                        <i class="fas fa-times"></i> Reject
+                    </button>&nbsp;
+                    <button *ngIf="booking.ReservationStatus === 'Accepted'" class="btn btn-danger btn-sm" (click)="rejectReservation(booking.ReservationID)">
+                        <i class="fas fa-times"></i> Delete
+                    </button>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+</div>

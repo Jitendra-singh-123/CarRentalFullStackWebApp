@@ -1,0 +1,125 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card-header {
+    padding: 20px;
+    text-align: center;
+}
+
+.profile-img {
+    width: 100px;
+    border-radius: 50%;
+    animation: zoomIn 1s ease forwards;
+    
+}
+
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.5);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.card-body {
+    padding: 20px;
+    text-align: center;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.mail {
+    color: #666;
+    
+}
+
+.job {
+    color: #888;
+    margin-top: 5px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    animation: slideInDown 0.5s ease forwards;
+    
+}
+
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-20px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.social-icon {
+    font-size: 24px;
+    margin: 0 10px;
+    color: #555;
+    transition: color 0.3s;
+}
+
+.social-icon:hover {
+    color: #007bff;
+}
+
+.card-footer {
+    background-color: #f5f5f5;
+    padding: 15px 20px;
+    text-align: center;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.count {
+    color: #888;
+}
+
+.count span {
+    font-weight: bold;
+    color: #333;
+}

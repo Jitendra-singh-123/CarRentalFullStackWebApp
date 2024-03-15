@@ -1,0 +1,171 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+<div class="container-fluid">
+  <div *ngIf="!isAdminLoggedIn && !isCustomerLoggedIn">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" data-bs-theme="dark">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" routerLink="/home" routerLinkActive="active"><i
+                  class="fa fa-home" style="font-size:20px"></i></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;signup
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <a class="dropdown-item" routerLink="/signupAdmin" routerLinkActive="active"> Admin</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" routerLink="/register" routerLinkActive="active"> Customer</a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/login" routerLinkActive="active"><i class="fa fa-sign-in"
+                  aria-hidden="true"></i>&nbsp;login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  </div>
+
+
+
+  <!-- Navbar for Admin -->
+  <div *ngIf="isAdminLoggedIn">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" data-bs-theme="dark">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" routerLink="/admin/profile/showProfile"
+                routerLinkActive="active">
+                <i class="bi bi-person-circle fs-3" id="profile"></i>
+              </a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" routerLink="/home" routerLinkActive="active"><i
+                  class="fa fa-home" style="font-size:20px"></i></a>
+            </li>
+            <!-- Dropdown Menu -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Admin Actions
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" routerLink="/admin/customerBookings">Bookings</a></li>
+                <li><a class="dropdown-item" routerLink="/admin/dashboard">Dashboard</a></li>
+                <li><a class="dropdown-item" routerLink="/admin/car">Add Car</a></li>
+              </ul>
+            </li>
+            <!-- End Dropdown Menu -->
+            <li class="nav-item">
+              <a class="nav-link" (click)="logout()" routerLink="/login" routerLinkActive="active">Logout</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+
+
+  <!-- Navbar for Customer -->
+  <div *ngIf="isCustomerLoggedIn">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" data-bs-theme="dark">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" routerLink="/customer/profile/showProfile"
+                routerLinkActive="active">
+                <i class="bi bi-person-circle fs-3" id="profile"></i>
+              </a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" routerLink="/home" routerLinkActive="active"><i
+                  class="fa fa-home" style="font-size:20px"></i></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Bookings
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                <li><a class="dropdown-item" routerLink="/customer/bookings" routerLinkActive="active">My Bookings</a>
+                </li>
+                <li><a class="dropdown-item" routerLink="/customer/myBookings" routerLinkActive="active">Update
+                    Bookings</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/customer/dashboard" routerLinkActive="active">Book Car</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="logout()" routerLink="/login" routerLinkActive="active">Logout</a>
+            </li>
+            <!-- Add this code inside your navbar -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                More
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" routerLink="/about" routerLinkActive="active">About</a>
+                <a class="dropdown-item" routerLink="/contact" routerLinkActive="active">Contact</a>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+</div>
+
+
+
+
+<div class="container-fluid-sm content " style="padding-top: 56px;">
+  <router-outlet></router-outlet>
+ 
+
+</div>

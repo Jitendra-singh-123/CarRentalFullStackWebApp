@@ -1,0 +1,16 @@
+
+<div class="container">
+    <div class="delete-form">
+        <h2>Delete Account</h2>
+        <p>Are you sure you want to delete your account?</p>
+        <p>This action cannot be undone. You will permanently lose access to your account and all associated data.</p>
+        <p>Your Reservations, Feedbacks and Payment Details will be deleted</p>
+        <div class="password-input">
+            <input type="password" placeholder="Enter your password" [(ngModel)]="enteredPassword">
+        </div><br>
+        <div class="buttons">
+            <button class="btn btn-outline-dark" (click)="cancelDelete()">Cancel</button>
+            <button class="btn btn-outline-danger" (click)="confirmDelete()">Delete Account</button>
+        </div>
+    </div>
+

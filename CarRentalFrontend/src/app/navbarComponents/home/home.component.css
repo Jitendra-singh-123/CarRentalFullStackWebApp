@@ -1,0 +1,20 @@
+#myCarousel .carousel-inner img {
+    max-width: 1400px; /* Adjust the value as needed */
+    max-height: 700px;
+  }
+
+
+  .fab:hover {
+    color: blue; 
+  }
+
+  #insta:hover{
+    color: #fff;
+    background: #d6249f;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+  box-shadow: 0px 3px 10px rgba(0,0,0,.25);
+  }
+
+  #img1:hover, #img2:hover, #img3:hover, #img4:hover,#img5:hover,#img6:hover {
+    transform: scale(1.1);
+}

@@ -1,0 +1,203 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+
+      <form [formGroup]="addCarForm">
+        <div class="form-group">
+          <label for="make">Make:</label>
+          <input type="text" formControlName="make" class="form-control" id="make" required>
+          <div *ngIf="addCarForm.controls['make'].errors && addCarForm.controls['make'].touched" class="text-danger">
+            Make is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="model">Model:</label>
+          <input type="text" formControlName="model" class="form-control" id="model" required>
+          <div *ngIf="addCarForm.controls['model'].errors && addCarForm.controls['model'].touched" class="text-danger">
+            Model is required.
+          </div>
+        </div>
+       
+        <br>
+        <div class="Neon Neon-theme-dragdropbox form-group">
+          <label for="upload_profile_image">Upload Profile Image:</label>
+          <div class="profile-badge">
+
+            <input
+              style="z-index: 999; opacity: 0; width: 320px; height: 200px; position: absolute; right: 0px; left: 0px; margin-right: auto; margin-left: auto;"
+              name="files[]" id="filer_input2" multiple="multiple" type="file" accept="image/x-png,image/gif,image/jpeg"
+              (change)="onFileSelected($event)">
+
+            <div class="Neon-input-dragDrop">
+              <div class="Neon-input-inner">
+                <div class="Neon-input-icon">
+                  <i class="fa fa-file-image-o"></i>
+
+                </div>
+
+                <div class="Neon-input-text">
+                  <label for="upload_profile_image" class="upload-label" *ngIf="selectedFile">
+                    <img class="profile" [src]="imagePreview" alt="profile">
+                  </label>
+                  <h3>Drag&amp;Drop files here</h3> <span style="display:inline-block; margin: 15px 0">or</span>
+                </div>
+                <a class="Neon-input-choose-btn blue">Browse Files</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="location">Location:</label>
+          <textarea  id="location" formControlName="location" class="form-control" cols="10" rows="2" placeholder="Enter Location"></textarea>
+          <div *ngIf="addCarForm.controls['location'].errors && addCarForm.controls['location'].touched"
+            class="text-danger">
+            Location is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="specifications">Specifications:</label>
+          <textarea  id="specifications" formControlName="specifications" class="form-control" cols="20" rows="10" required placeholder="Enter Specifications"></textarea>
+          <div *ngIf="addCarForm.controls['specifications'].errors && addCarForm.controls['specifications'].touched"
+            class="text-danger">
+            Specifications are required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="dailyRate">Daily Rate(INR):</label>
+          <input type="number" formControlName="dailyRate" class="form-control" id="dailyRate" required min="1">
+          <div *ngIf="addCarForm.controls['dailyRate'].errors && addCarForm.controls['dailyRate'].touched"
+            class="text-danger">
+            Daily Rate is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="availableFrom">Available From:</label>
+          <input type="date" formControlName="availableFrom" class="form-control" id="availableFrom" required>
+          <div *ngIf="addCarForm.controls['availableFrom'].errors && addCarForm.controls['availableFrom'].touched"
+            class="text-danger">
+            <div *ngIf="addCarForm.controls['availableFrom'].errors['dateRangeError']">
+              Available From date should be less than Available To date.
+            </div>
+            <div *ngIf="addCarForm.controls['availableFrom'].errors['required']">
+              Available From date is required.
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="availableTo">Available To:</label>
+          <input type="date" formControlName="availableTo" class="form-control" id="availableTo" required>
+          <div *ngIf="addCarForm.controls['availableTo'].errors && addCarForm.controls['availableTo'].touched"
+            class="text-danger">
+            <div *ngIf="addCarForm.controls['availableTo'].errors['dateRangeError']">
+              Available To date should be greater than Available From date.
+            </div>
+            <div *ngIf="addCarForm.controls['availableTo'].errors['required']">
+              Available To date is required.
+            </div>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="carPlateNumber">Car Plate Number:</label>
+          <input type="text" formControlName="carPlateNumber" class="form-control" id="carPlateNumber">
+          <div *ngIf="addCarForm.controls['carPlateNumber'].errors && addCarForm.controls['carPlateNumber'].touched"
+            class="text-danger">
+            Car Plate Number is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="status">Status:</label>
+          <select formControlName="status" class="form-control" id="status">
+            <option value="" selected>-------------Select Status--------------</option>
+            <option value="Available">Available</option>
+            <option value="Not Available">Not Available</option>
+          </select>
+          <div *ngIf="addCarForm.controls['status'].errors && addCarForm.controls['status'].touched"
+            class="text-danger">
+            Status is required.
+          </div>
+        </div>
+
+
+
+        <div class="form-group">
+          <label for="year">Year:</label>
+          <input type="number" formControlName="year" class="form-control" id="year" required min="2000">
+          <div *ngIf="addCarForm.controls['year'].errors && addCarForm.controls['year'].touched" class="text-danger">
+            Year is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="color">Color:</label>
+          <input type="text" formControlName="color" class="form-control" id="color" required>
+          <div *ngIf="addCarForm.controls['color'].errors && addCarForm.controls['color'].touched" class="text-danger">
+            Color is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="mileage">Mileage(Kmpl):</label>
+          <input type="number" formControlName="mileage" class="form-control" id="mileage" required min="1" max="150">
+          <div *ngIf="addCarForm.controls['mileage'].errors && addCarForm.controls['mileage'].touched"
+            class="text-danger">
+            Mileage is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="carType">Car Type:</label>
+          <select formControlName="carType" class="form-control" id="carType" required>
+            <option value="" selected>-------------Select Car Type------------</option>
+            <option value="Automatic">Automatic</option>
+            <option value="Manual">Manual</option>
+          </select>
+          <div *ngIf="addCarForm.controls['carType'].errors && addCarForm.controls['carType'].touched"
+            class="text-danger">
+            Car Type is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="transmission">Transmission Type:</label>
+          <select formControlName="transmission" class="form-control" id="transmission" required>
+
+            <option value="" selected>-------------Select Transmission------------</option>
+            <option value="Hybrid" >Hybrid</option>
+            <option value="Electric">Electric</option>
+            <option value="Petrol">Petrol</option>
+            <option value="Diesel">Diesel</option>
+          </select>
+          <div *ngIf="addCarForm.controls['transmission'].errors && addCarForm.controls['transmission'].touched"
+            class="text-danger">
+            Transmission Type is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="maintenanceStatus">Maintenance Status:</label>
+          <textarea formControlName="maintenanceStatus" class="form-control" id="maintenanceStatus" cols="20" rows="10" required placeholder="Enter Details about Maintenance"></textarea>
+          <div
+            *ngIf="addCarForm.controls['maintenanceStatus'].errors && addCarForm.controls['maintenanceStatus'].touched"
+            class="text-danger">
+            Maintenance Status is required.
+          </div>
+        </div>
+
+
+        <br>
+        <button type="button" (click)="addCar()" class="btn btn-primary" [disabled]="addCarForm.invalid">Submit</button>
+      </form>
+
+    </div>
+  </div>
+</div>

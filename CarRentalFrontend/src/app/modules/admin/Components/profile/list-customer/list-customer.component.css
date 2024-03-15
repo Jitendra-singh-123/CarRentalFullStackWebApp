@@ -1,0 +1,85 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Colors */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --text-color: #333;
+    --bg-color: #f9f9f9;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Card Styles */
+.customer-card {
+    animation: fadeInUp 0.5s ease;
+    transition: transform 0.3s ease;
+    transform-origin: center bottom;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--bg-color);
+}
+
+.customer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.card-text {
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.animated-heading {
+    animation: fadeInUp 1s ease-in-out;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    color: var(--text-color);
+}
+
+
+/* Add this CSS to your existing styles or stylesheet */
+@keyframes buttonFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.btn-delete {
+    animation: buttonFadeIn 0.5s ease-in-out;
+}
+
+.card-footer {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+

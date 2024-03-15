@@ -1,0 +1,83 @@
+<section class="background-radial-gradient overflow-hidden">
+    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+        <div class="row gx-lg-5 align-items-center mb-5">
+            <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+                <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+                    Welcome to Car Rental System
+                </h1>
+                <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
+                    Manage your car rental bookings with ease. Whether you're a customer looking to book a car for your next trip or an admin managing bookings and cars, we've got you covered.
+                </p>
+                <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
+                    Sign in to access your account and get started.
+                </p>
+            </div>
+            
+
+            <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+                <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+                <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+
+                <div class="card bg-glass">
+                    <div class="card-body px-4 py-5 px-md-5">
+                        <form [formGroup]="loginForm">
+
+                            <div class="form-outline mb-4">
+
+                                <input type="email" formControlName="Email" id="Email" class="form-control" />
+                                <label class="form-label" for="Email">Email address</label>
+                                <div *ngIf="loginForm.controls['Email'].errors && loginForm.controls['Email'].touched"
+                                    class="text-danger">
+                                    Enter a valid email address.
+                                </div>
+                            </div>
+
+                            <div class="form-outline mb-4">
+
+                                <input type="password" formControlName="Password" id="Password" class="form-control" />
+                                <label class="form-label" for="Password">Password</label>
+                                <div *ngIf="loginForm.controls['Password'].errors && loginForm.controls['Password'].touched"
+                                    class="text-danger">
+                                    Enter Password
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="Role">Choose Role:</label>&nbsp;
+                                <select formControlName="Role" name="Role" id="Role">
+                                    <option value="" selected>Select Role</option>
+                                    <option value="Customer">Customer</option>
+                                    <option value="Admin">Admin</option>
+                                </select>
+
+                            </div>
+
+                            
+                            <div class="alert alert-warning alert-dismissible fade show my-2" role="alert" *ngIf="showErrorStatus">
+                                <strong>Wrong Credentials</strong> Check your email and password!
+                                <button type="button" class="btn-close" aria-label="Close" (click)="closeErrorAlert()"></button>
+                              </div>
+                              
+                            <button type="submit" class="btn btn-primary btn-block mb-4 my-3" (click)="login()"
+                                [disabled]="loginForm.invalid">
+                                Login
+                            </button>
+                      
+                           
+                            <div class="text-center">
+                                <a routerLink="/forgetPassword">Forget Password?</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+
+    
+</section>
+<!-- Section: Design Block -->

@@ -1,0 +1,27 @@
+<div class="container mt-4">
+    <h2 class="mb-4 p-2 bg-dark text-white rounded text-center">All Bookings</h2>
+    <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let reservation of bookings">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <img [src]="reservation.processedImage" alt="Car image" class="card-img-top">
+                    <h5 class="card-title mb-3"><b>{{ reservation.CarMake }} {{ reservation.CarModel }}</b></h5>
+                    <hr>
+                    <p class="card-text mb-1"><strong>Pickup Date:</strong> {{ reservation.PickUpTime | date:'dd-MM-yyyy' }}</p>
+                    <p class="card-text mb-1"><strong>Drop-off Date:</strong> {{ reservation.DropOffTime | date:'dd-MM-yyyy' }}</p>
+                    <p class="card-text mb-1"><strong>Daily Rate:</strong> {{ reservation.DailyRate | currency:'INR'}}</p>
+                    <p class="card-text mb-0"><strong>Reservation Status:&nbsp;</strong>
+                        <span *ngIf="reservation.ReservationStatus === 'Accepted'" class="text-success"><i class="fas fa-check-circle"></i>&nbsp;{{ reservation.ReservationStatus }}</span>
+                        <span *ngIf="reservation.ReservationStatus === 'Waiting'" class="text-warning"><i class="fa fa-spinner " aria-hidden="true"></i> &nbsp;{{ reservation.ReservationStatus }}</span>
+                        <span *ngIf="reservation.ReservationStatus === 'Rejected'" class="text-danger">&nbsp;{{ reservation.ReservationStatus }}</span>
+                    </p><br><br>
+                    <div class="mt-auto d-flex justify-content-between">
+                        <button *ngIf=" reservation.ReservationStatus ==='Accepted' && (reservation.PaymentId === null || reservation.PaymentId === 0) && (reservation.PaidAmount === 0 || reservation.PaidAmount === null) " (click)="navigate(reservation)" class="btn btn-primary btn-sm payment">Make Payment</button>
+                        <span *ngIf="reservation.ReservationStatus === 'Accepted' && reservation.PaidAmount != 0" class="text-success payment-done"><i class="fa fa-flag" aria-hidden="true"></i> Payment Done</span>
+                        <button class="btn btn-outline-dark" type="button" routerLink="/customer/postFeedback/{{reservation.CarID}}">Post Feedback</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

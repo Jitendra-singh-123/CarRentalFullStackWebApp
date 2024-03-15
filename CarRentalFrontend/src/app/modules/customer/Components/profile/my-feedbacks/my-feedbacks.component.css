@@ -1,0 +1,44 @@
+.review-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-date {
+    margin-left: auto; /* Align to the right */
+    opacity: 0.8; 
+}
+.checked {
+    color: orange;
+  }
+
+  .card-title {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    font-weight: bold;
+    border-bottom: 2px solid #2980b9;
+    padding-bottom: 5px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem;
+}
+
+
+.book-your-car {
+    padding: 10px;
+    background-color: black;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.book-your-car-heading {
+    margin: 0;
+}
+.my-feedbacks-container {
+    margin-left: 20px; /* Adjust the margin value as needed */
+}

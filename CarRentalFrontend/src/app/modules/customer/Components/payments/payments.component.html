@@ -1,0 +1,147 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<div class="container">
+    <div class="row m-0">
+        <div class="col-lg-7 pb-5 pe-lg-5">
+            <div class="row">
+                <div class="col-12 p-5">
+                    <!-- <img src="https://www.freepnglogos.com/uploads/honda-car-png/honda-car-upcoming-new-honda-cars-india-new-honda-3.png"
+                        alt=""> -->
+
+                    <img [src]="car.ImageUrl.startsWith('https') ? car.ImageUrl : processedImage" alt="Car image"
+                        class="card-img-top">
+                </div>
+                <div class="row m-0 bg-light">
+                    <div class="col-md-4 col-6 ps-30 pe-0 my-4">
+                        <p class="text-muted">Mileage</p>
+                        <p class="h5">{{car.Mileage}}<span class="ps-1">Km</span></p>
+                    </div>
+                    <div class="col-md-4 col-6  ps-30 my-4">
+                        <p class="text-muted">Transmission</p>
+                        <p class="h5 m-0">{{car.Transmission}}</p>
+                    </div>
+                    <div class="col-md-4 col-6 ps-30 my-4">
+                        <p class="text-muted">Drive unit</p>
+                        <p class="h5 m-0">Front</p>
+                    </div>
+                    <div class="col-md-4 col-6 ps-30 my-4">
+                        <p class="text-muted">Body</p>
+                        <p class="h5 m-0">Coupe</p>
+                    </div>
+                    <div class="col-md-4 col-6 ps-30 my-4">
+                        <p class="text-muted">Color</p>
+                        <p class="h5 m-0">{{car.Color}}</p>
+                    </div>
+                    <div class="col-md-4 col-6 ps-30 my-4">
+                        <p class="text-muted">Daily Rate</p>
+                        <p class="h5 m-0">₹ {{car.DailyRate}}</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 p-0 ps-lg-4">
+            <div class="row m-0">
+                <div class="col-12 px-4">
+                    <div class="d-flex align-items-end mt-4 mb-2">
+                        <p class="h4 m-0"><span class="pe-1">{{car.Make}}</span><span class="pe-1">{{car.Model}}</span>
+
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <p class="textmuted">Qty</p>
+                        <p class="fs-14 fw-bold">1</p>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <p class="textmuted">Daily Rate</p>
+                        <p class="fs-14 fw-bold">{{car.DailyRate | currency: 'INR'}}</p>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <p class="textmuted">Rent Days</p>
+                        <p class="fs-14 fw-bold">{{reservation.NumberOfDays}}</p>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <p class="textmuted">Total</p>
+                        <p class="fs-14 fw-bold">{{reservation.NumberOfDays}}x{{car.DailyRate}}</p>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <p class="textmuted">Shipping</p>
+                        <p class="fs-14 fw-bold">Free</p>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <p class="textmuted">Promo code</p>
+                        <p class="fs-14 fw-bold">{{100|currency:'INR'}}</p>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <p class="textmuted fw-bold">Total With Discount</p>
+                        <div class="d-flex align-text-top "><span class="h4">{{totalPrice - 100 |
+                                currency:'INR'}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 px-4 my-4">
+                        <form #paymentForm="ngForm" (ngSubmit)="payNow()" novalidate>
+                            <!-- Payment Method -->
+                            <div class="fw-bold">Payment Method</div>
+                            <hr>
+                            <div class="form-check payment-method">
+                                <input class="form-check-input" type="radio" name="paymentMethod" id="cashPayment"
+                                    value="Cash" required [(ngModel)]="paymentMethod" name="paymentMethod">
+                                <label class="form-check-label" for="cashPayment">
+                                    <i class="fas fa-money-bill-wave-alt fa-2x"></i>&nbsp;
+                                    <span class="payment-method-label">Cash</span>
+                                </label>
+                            </div>
+                            <div class="form-check payment-method">
+                                <input class="form-check-input" type="radio" name="paymentMethod" id="creditCardPayment"
+                                    value="Credit Card" [(ngModel)]="paymentMethod" name="paymentMethod">
+                                <label class="form-check-label" for="creditCardPayment">
+                                    <i class="fas fa-credit-card fa-2x"></i>&nbsp;
+                                    <span class="payment-method-label">Credit Card</span>
+                                </label>
+                            </div><br>
+                            <div class="form-check payment-method">
+                                <input class="form-check-input" type="radio" name="paymentMethod" id="onlinePayment"
+                                    value="Online" [(ngModel)]="paymentMethod" name="paymentMethod">
+                                <label class="form-check-label" for="onlinePayment">
+                                    <i class="fas fa-globe fa-2x"></i>&nbsp;
+                                    <span class="payment-method-label">Online</span>
+                                </label>
+                            </div><br>
+                            <div class="form-check payment-method">
+                                <input class="form-check-input" type="radio" name="paymentMethod" id="chequePayment"
+                                    value="Debit Card" [(ngModel)]="paymentMethod" name="paymentMethod">
+                                <label class="form-check-label" for="chequePayment">
+                                    <i class="fas fa-money-check fa-2x"></i>&nbsp;
+                                    <span class="payment-method-label">Debit Card</span>
+                                </label>
+                            </div><br>
+
+
+
+
+                            <!-- Other payment methods -->
+                            <!-- Your existing radio button inputs -->
+
+                            <!-- Account Details -->
+                            <div class="fw-bold mt-4">Account Details</div>
+                            <hr>
+                            <div class="d-flex mb-4">
+                                <span class="">
+                                    <p class="text-muted">Bank Details</p>
+                                    <textarea class="form-control account-details-textarea" name="accountDetails"  [(ngModel)]="accountDetails" cols="30" rows="10"
+                                        placeholder="Enter your bank details" 
+                                        required></textarea>
+                                </span>
+                            </div>
+                            <!-- Pay Now button -->
+                            <button type="submit" class="btn btn-primary btn btn-block"
+                                [disabled]="!paymentForm.valid">Pay
+                                Now</button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>

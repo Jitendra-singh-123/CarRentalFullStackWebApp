@@ -1,0 +1,21 @@
+<div class="container mt-4">
+    <h2 class="mb-4 p-2 bg-dark text-white rounded text-center animated-heading">All Customers</h2>
+    <div class="row justify-content-center">
+        <div class="col-lg-6 mb-3" *ngFor="let customer of customers; let i = index">
+            <div class="card customer-card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ customer.FirstName }} {{ customer.LastName }}</h5>
+                    <p class="card-text"><strong>Email:</strong> {{ customer.EmailAddress }}</p>
+                    <p class="card-text"><strong>Phone Number:</strong> {{ customer.PhoneNumber }}</p>
+                    <p class="card-text"><strong>Address:</strong> {{ customer.Address }}</p>
+                    <p class="card-text"><strong>License Number:</strong> {{ customer.LicenseNumber }}</p>
+                    <p class="card-text"><strong>Role:</strong> {{ customer.Role }}</p>
+                    <p class="card-text"><strong>Gender:</strong> {{ customer.Gender }}</p>
+                </div>
+                <div class="card-footer d-flex justify-content-end">
+                    <button class="btn btn-sm btn-danger" (click)="deleteCustomer(customer.CustomerId)">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

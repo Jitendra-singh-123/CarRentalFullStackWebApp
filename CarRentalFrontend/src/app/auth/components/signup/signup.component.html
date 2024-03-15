@@ -1,0 +1,97 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Registration Form</h5>
+
+                    <form [formGroup]="customerForm">
+                        <div class="form-group">
+                            <label for="FirstName">First Name</label>
+                            <input type="text" formControlName="FirstName" class="form-control" id="FirstName">
+                            <div *ngIf="customerForm.controls['FirstName'].errors && customerForm.controls['FirstName'].touched"
+                                class="text-danger">
+                                First Name is required.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="LastName">Last Name</label>
+                            <input type="text" formControlName="LastName" class="form-control" id="LastName">
+                            <div *ngIf="customerForm.controls['LastName'].errors && customerForm.controls['LastName'].touched"
+                                class="text-danger">
+                                Last Name is required.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="EmailAddress">Email Address</label>
+                            <input type="email" formControlName="EmailAddress" class="form-control" id="EmailAddress">
+                            <div *ngIf="customerForm.controls['EmailAddress'].errors && customerForm.controls['EmailAddress'].touched"
+                                class="text-danger">
+                                Enter a valid email address.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Password">Password</label>
+                            <input type="password" formControlName="Password" class="form-control" id="Password">
+                            <div *ngIf="customerForm.controls['Password'].errors && customerForm.controls['Password'].touched"
+                                class="text-danger">
+                                Enter Password Lenght should be more than 6.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="RePassword">RePassword</label>
+                            <input type="password" formControlName="RePassword" class="form-control" id="RePassword">
+                            <div *ngIf="customerForm.controls['RePassword'].errors && customerForm.controls['RePassword'].touched"
+                                class="text-danger">
+                                Password is not matching
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="PhoneNumber">Phone Number</label>
+                            <input type="text" formControlName="PhoneNumber" class="form-control" id="PhoneNumber">
+                            <div *ngIf="customerForm.controls['PhoneNumber'].errors && customerForm.controls['PhoneNumber'].touched"
+                                class="text-danger">
+                                Enter Valid Phone Number
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Address">Address</label>
+                            <input type="text" formControlName="Address" class="form-control" id="Address">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="LicenseNumber">License Number</label>
+                            <input type="text" formControlName="LicenseNumber" class="form-control" id="LicenseNumber">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="Gender">Gender: &nbsp;</label>
+                            <select id="Gender" formControlName="Gender">
+                                <option value="" selected>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Transgender">Transgender</option>
+                                <option value="Prefer not to say">Prefer not to say</option>
+                            </select>
+                            <div *ngIf="customerForm.controls['Gender'].errors && customerForm.controls['Gender'].touched"
+                                class="text-danger">
+                                Enter Gender
+                            </div>
+                        </div>
+
+                        <br>
+                        <button type="submit" class="btn btn-outline-dark" (click)="register()"
+                            [disabled]="customerForm.invalid">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

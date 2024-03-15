@@ -1,0 +1,46 @@
+
+.sidebar {
+    position: sticky;
+    top: 0;
+    height: 150vh;
+    overflow-y: auto;
+    background-color: #343a40; /* Adjust sidebar background color */
+    color: #fff; /* Adjust sidebar text color */
+    padding: 20px; /* Adjust sidebar padding */
+    z-index: 1000; /* Ensure sidebar stays above content */
+    width: 250px; /* Adjust sidebar width */
+}
+
+.main-content {
+    padding: 20px; /* Adjust main content padding */
+    height: 2000px; /* Sample height for demonstration */
+    overflow-y: auto; /* Allow main content to be scrollable */
+}
+
+.main-content::-webkit-scrollbar {
+    width: 10px; /* Width of main content scrollbar */
+}
+
+.main-content::-webkit-scrollbar-thumb {
+    background-color: #6c757d; /* Color of main content scrollbar thumb */
+    border-radius: 5px; /* Border radius of main content scrollbar thumb */
+}
+
+/* Adjust the main content padding when the sidebar is fixed */
+.main-content.sidebar-fixed {
+    padding-left: 220px; /* Adjust sidebar width */
+}
+
+
+.nav-link:hover {
+   transform: scale(1.1);
+   color: aqua;
+}
+
+.nav-item:hover i {
+    transform: scale(1.1); /* Change icon color on hover */
+    color: aqua;
+
+}
+
+

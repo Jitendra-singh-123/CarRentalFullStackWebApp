@@ -1,0 +1,93 @@
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-header {
+    border-radius: 15px 15px 0 0;
+  }
+  
+  .card-body {
+    padding: 15px;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-text {
+    margin-bottom: 0.5rem;
+  }
+  
+  .bg-primary {
+    background-color: black !important;
+  }
+  
+  .text-primary {
+    color: black !important;
+  }
+  
+  .text-white {
+    color: #fff !important;
+  }
+  
+  .animated-heading {
+    animation-duration: 0.5s;
+  }
+  
+  .animated {
+    animation-duration: 0.5s;
+  }
+  
+  .mb-5 {
+    margin-bottom: 3rem !important; /* Adjust spacing between categories */
+  }
+  
+  .mb-4 {
+    margin-bottom: 2rem !important; /* Adjust spacing between feedbacks within a category */
+  }
+  
+  .customer-rating {
+    margin-bottom: 1rem;
+  }
+
+.checked {
+    color: orange;
+  }
+  .review-date-time {
+  position: absolute;
+  bottom: 0;
+    right: 0;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  color: #777; /* Adjust color as needed */
+}
+
+.card-body {
+    padding: 15px; /* Add padding to create space between feedback data and card edges */
+    position: relative; /* Positioning context for the delete button */
+  }
+  
+  .delete-btn {
+    position: absolute;
+    bottom: 10px; /* Adjust the distance from the bottom as needed */
+    left: 15px; /* Adjust the distance from the left as needed */
+    background-color: #dc3545; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .delete-btn i {
+    margin-right: 5px; /* Add spacing between icon and text */
+    margin-left: 5px;
+  }
+  
+  .delete-btn:hover{
+    transform: scale(1.1);
+  }

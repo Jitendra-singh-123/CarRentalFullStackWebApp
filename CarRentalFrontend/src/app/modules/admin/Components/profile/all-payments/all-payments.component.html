@@ -1,0 +1,25 @@
+<div class="container">
+    <div *ngFor="let group of payments" class="mt-4 fade-in">
+      <h2>Customer ID: {{ group.customerId }}</h2>
+      <h3>Customer Name: {{ group.customerName }}</h3>
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div *ngFor="let payment of group.payments" class="col">
+          <div class="card shadow fade-in">
+            <div class="card-body">
+              <h5 class="card-title">Payment Details</h5>
+              <ul class="list-group list-group-flush">
+                
+                <li class="list-group-item"><strong>Car Make:</strong> {{ payment.Car.Make }}</li>
+                <li class="list-group-item"><strong>Car Model:</strong> {{ payment.Car.Model }}</li>
+                <li class="list-group-item"><strong>Payment Method:</strong> {{ payment.PaymentMethod }}</li>
+                <li class="list-group-item"><strong>Amount:</strong> {{ payment.Amount }}</li>
+                <li class="list-group-item"><strong>Transaction Date:</strong> {{ payment.TransactionDate }}</li>
+              </ul>
+            </div>
+          </div>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,50 @@
+<div class="col-md-12">
+    <div class="row justify-content-center">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h2 class="mb-4 p-2 bg-dark text-white rounded text-center mt-4">My Feedbacks</h2>
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="feedback-list">
+                            <div *ngFor="let feedback of myFeedbacks" class="feedback-item">
+                                <div class="customer-info">
+
+                                    <h2 class="mb-4 p-2 rounded text-center bg-dark text-white">{{ feedback.CarMake }} {{ feedback.CarModel
+                                        }}</h2><hr>
+                                    <img [src]=" feedback.processedImage" alt="Car image" class="card-img-top"
+                                        style="height: 250px; width: 450px;">
+                                    <h5 class="customer-name"><b>{{ feedback.CustomerName }}</b></h5>
+                                    <div class="customer-rating">
+                                        <b>Rating:</b> {{ feedback.Rating }}/5
+                                        <span *ngFor="let star of [1, 2, 3, 4, 5]">
+                                            <span *ngIf="star <= feedback.Rating" class="fa fa-star checked"></span>
+                                            <span *ngIf="star > feedback.Rating" class="fa fa-star"></span>
+                                        </span>
+                                    </div>
+
+                                </div>
+                                <br>
+                                <div class="review-info">
+                                    <p class="review"><b>Review: </b>{{ feedback.Review }}</p>
+                                    <div class="review-date">
+                                        <i>Review Date</i>
+                                        <p class="text-right"><i>{{ feedback.ReviewDateTime | date: 'dd-MM-yyyy' }}</i>
+                                        </p>
+                                    </div>
+                                </div>
+                                <button class="btn btn-danger mt-1"
+                                    (click)="deleteFeedback(feedback.FeedbackId)">Delete</button>
+                                <hr>
+
+                            </div>
+                            <div *ngIf="!myFeedbacks || myFeedbacks.length === 0" class="no-feedbacks">
+                                No feedbacks available.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

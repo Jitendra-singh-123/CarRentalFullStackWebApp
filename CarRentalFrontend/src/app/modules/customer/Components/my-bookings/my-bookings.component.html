@@ -1,0 +1,99 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+<div class="container mt-4">
+    <h2 class="mb-4 p-2 bg-dark text-white rounded text-center">Update Bookings</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+        <div class="col mb-4" *ngFor="let reservation of bookings; let i = index">
+            <div class="card h-100">
+                <div class="card-body">
+                    <img [src]=" reservation.processedImage" alt="Car image"
+                        class="card-img-top" >
+                    <h5 class="card-title"><b>{{ reservation.CarMake }} {{ reservation.CarModel }}</b></h5>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="pickupDate">Pickup Date:</label>
+                                <input type="text" id="pickupDate" class="form-control"
+                                    [(ngModel)]="reservation.PickUpTime" (change)="calculateNumberOfDays(reservation)"
+                                    [disabled]="reservation.editMode">
+                            </div>
+                            <div class="form-group">
+                                <label for="dropoffDate">Drop-off Date:</label>
+                                <input type="text" id="dropoffDate" class="form-control"
+                                    [(ngModel)]="reservation.DropOffTime" (change)="calculateNumberOfDays(reservation)"
+                                    [disabled]="reservation.editMode">
+                            </div>
+                            <div class="form-group">
+                                <label for="dailyRate">Daily Rate:</label>
+                                <input type="text" id="dailyRate" class="form-control"
+                                    [(ngModel)]="reservation.DailyRate" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="bookingDays">Booking Days:</label>
+                                <input type="text" id="bookingDays" class="form-control"
+                                    [(ngModel)]="reservation.NumberOfDays" (change)="calculatePayment(reservation)"
+                                    readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservationTime">Reservation Time:</label>
+                                <input type="text" id="reservationTime" class="form-control"
+                                    [(ngModel)]="reservation.ReservationTime" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="totalPrice">Total Price:</label>
+                                <input type="text" id="totalPrice" class="form-control"
+                                    [(ngModel)]="reservation.totalPayment" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <p><br>
+                        <strong>Reservation Status: &nbsp;</strong>
+                        <span *ngIf="reservation.ReservationStatus === 'Accepted'" class="text-success">
+                            <i class="fas fa-check-circle"></i>&nbsp;{{ reservation.ReservationStatus }}
+                            <hr>
+                            <!-- Show payment button if reservation status is 'Accepted' -->
+
+                            <!-- <button (click)="navigate(reservation)" class="btn btn-primary btn-sm position-absolute start-0 bottom-0 mb-3 mx-2 payment">
+                                Make Payment
+                            </button> -->
+                            <button *ngIf="(reservation.PaymentId === null  || reservation.PaymentId === 0) && (reservation.PaidAmount === 0 || reservation.PaidAmount === null)"
+                                (click)="navigate(reservation)"
+                                class="btn btn-primary btn-sm position-absolute start-0 bottom-0 mb-3 mx-2 payment">
+                                Make Payment
+                            </button>
+
+                                
+
+                        </span>
+                        <span *ngIf="reservation.ReservationStatus === 'Waiting'" class="text-warning">
+                            <i class="fa fa-spinner " aria-hidden="true"></i> &nbsp;{{ reservation.ReservationStatus }}
+
+                        </span>
+
+
+                        <span *ngIf="reservation.ReservationStatus === 'Rejected'" class="text-danger">
+                            &nbsp;{{ reservation.ReservationStatus }}
+                        </span><br><br>
+                        
+                        <span *ngIf="reservation.ReservationStatus === 'Accepted' && reservation.PaidAmount != 0" class="text-success payment-done">
+                            <i class="fa fa-flag" aria-hidden="true"></i> Payment Done
+                        </span><br><br>
+                        
+                    </p>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-danger btn-sm mr-1" (click)="deleteBooking(reservation.ReservationID)">
+                            <i class="fa-solid fa-trash" id="trash"></i>
+                        </button>&nbsp;
+                        <button class="btn btn-primary btn-sm"
+                            (click)="reservation.editMode = !reservation.editMode; updateBooking(reservation)">
+                            <i class="fas fa-edit" id="update"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

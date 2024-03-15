@@ -1,0 +1,33 @@
+@import 'ngx-toastr/toastr';
+  .fab:hover {
+    color: blue; 
+  }
+
+  #insta:hover{
+    color: #fff;
+    background: #d6249f;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+  box-shadow: 0px 3px 10px rgba(0,0,0,.25);
+  }
+  
+  /* Custom Toastr Styles */
+.toast {
+  border-radius: 4px;
+}
+
+.toast-success {
+  background-color: #5cb85c;
+}
+
+/* Customize other Toastr types (info, warning, error) as needed */
+
+/* Progress bar styles */
+.toast-progress {
+  background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent white background */
+  height: 4px;
+}
+
+/* Hide Toastr close button */
+.toast-close-button {
+  display: none;
+}

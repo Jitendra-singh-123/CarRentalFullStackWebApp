@@ -1,0 +1,107 @@
+<div class="container-xl px-4 mt-4">
+    <h2 class="card-title text-center mb-4 text-dark">Update Profile</h2>
+    <hr class="mt-0 mb-4">
+    <div class="row">
+        <!-- <div class="col-xl-4">
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header">Profile Picture</div>
+                <div class="card-body text-center">
+                    <img class="img-account-profile rounded-circle mb-2"
+                        src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                    <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                    <button class="btn btn-outline-dark" type="button">Upload new image</button>
+                </div>
+            </div>
+        </div> -->
+        
+        <div class="col-xl-8 mx-auto">
+            <!-- Account details card-->
+            <div class="card mb-4">
+                <div class="card-header">Account Details</div>
+                <div class="card-body">
+                    <form #updateProfileForm="ngForm" (ngSubmit)="updateProfile()" >
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="FirstName">First name</label>
+                                <input type="text" class="form-control" id="FirstName" [(ngModel)]="customer.FirstName"
+                                    name="FirstName" required minlength="1" maxlength="50">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="LastName">Last name</label>
+                                <input type="text" class="form-control" id="LastName" [(ngModel)]="customer.LastName"
+                                    name="LastName" required minlength="1" maxlength="50" required>
+                            </div>
+                        </div>
+                        <!-- Form Row        -->
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="EmailAddress">Email</label>
+                                <input type="email" class="form-control" id="EmailAddress"
+                                    [(ngModel)]="customer.EmailAddress" name="EmailAddress" required minlength="1"
+                                    maxlength="100" required>
+
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="PhoneNumber">Phone Number</label>
+                                <input type="text" class="form-control" id="PhoneNumber"
+                                    [(ngModel)]="customer.PhoneNumber" name="PhoneNumber" minlength="1" maxlength="20" required>
+                            </div>
+                        </div>
+
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="Address">Address</label>
+                                <textarea name="Address" id="Address" class="form-control" cols="20" rows="2"
+                                    [(ngModel)]="customer.Address" required></textarea>
+
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="LicenseNumber">License Number</label>
+                                <input class="form-control" id="LicenseNumber" type="text" name="LicenseNumber"
+                                    [(ngModel)]="customer.LicenseNumber" minlength="1" maxlength="30" required>
+                            </div>
+
+                        </div>
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label for="Gender" class="small mb-1">Gender</label>
+                                <select name="Gender" id="Gender" class="form-control" [(ngModel)]="customer.Gender"
+                                    name="Gender" required>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Transgender">Transgender</option>
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="row gx-3 mb-3">
+                           
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="Password">Password</label>
+                                <input class="form-control" id="Password" type="password" name="Password"
+                                    [(ngModel)]="customer.Password" minlength="1" maxlength="50" required>
+
+                            </div>
+
+               
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="RePassword">RePassword</label>
+                                <input class="form-control" id="RePassword" type="password" name="RePassword"
+                                    [(ngModel)]="customer.RePassword" minlength="1" maxlength="50" required>
+                                <div *ngIf="passwordsMismatch" class="text-danger small mt-1">Passwords do not match
+                                </div>
+                            </div>
+
+                        </div>
+                       
+                        <button type="submit" class="btn btn-outline-dark" [disabled]="updateProfileForm.invalid || passwordsMismatch">Update</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

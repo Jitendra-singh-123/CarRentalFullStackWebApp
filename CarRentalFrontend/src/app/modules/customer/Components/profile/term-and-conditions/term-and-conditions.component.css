@@ -1,0 +1,49 @@
+.card {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height: auto; /* Adjust height dynamically based on content */
+    width: 80%; /* Adjust width to make it responsive */
+    max-width: 1200px; /* Set maximum width to prevent excessive stretching */
+    border-radius: 30px;
+    background-color: #333541;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px; /* Add padding for better spacing */
+}
+
+.card .primary-heading {
+    text-align: center;
+    font-family: 'Josefin Sans', sans-serif;
+    color: white;
+    font-size: 2em;
+    margin-bottom: 25px;
+}
+
+.paragraph {
+    font-family: 'Josefin Sans', sans-serif;
+    color: rgb(179, 179, 179);
+    font-size: 1.1em;
+    line-height: 1.3;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+.bold {
+    font-weight: 700;
+    color: white;
+}
+
+.footer-heading {
+    text-align: center;
+    font-family: 'Josefin Sans', sans-serif;
+    color: white;
+    margin-top: 50px;
+    font-size: 1.5em;
+}
+
+/* Adjust media queries as needed */
+@media only screen and (max-width: 768px) {
+    .card {
+        width: 90%; /* Adjust width for smaller screens */
+    }
+}

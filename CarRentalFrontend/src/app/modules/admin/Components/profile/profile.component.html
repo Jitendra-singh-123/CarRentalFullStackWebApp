@@ -1,0 +1,91 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+
+<div class="container-fluid my-3">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 col-lg-2 p-0">
+            <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark sidebar">
+
+                <span class="fs-4">Profile</span>
+
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <br>
+                    <li class="nav-item">
+                        <a routerLink="/admin/profile/bookings"
+                            class="d-flex align-items-center  mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                            <i class="fa-solid fa-book"></i> &nbsp; See All Bookings
+                        </a>
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                        <a routerLink="/admin/profile/updateProfile"
+                            class="d-flex align-items-center  mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                            <i class="fa-solid fa-user-pen"></i> &nbsp; Update Profile
+                        </a>
+
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                        <a routerLink="/admin/profile/paymentHistory"
+                            class="d-flex align-items-center  mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                            <i class="fas fa-money-check"></i> &nbsp; Customers Payments
+                        </a>
+
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                        <a routerLink="/admin/profile/support"
+                            class="d-flex align-items-center  mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                            <i class="fas fa-hands-helping"></i> &nbsp; Support
+                        </a>
+                    </li><br>
+                    <li class="nav-item">
+                        <a routerLink="/admin/profile/allCustomers"
+                            class="d-flex align-items-center  mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                            <i class="fa-solid fa-file-contract"></i> &nbsp;  Customer's List
+                        </a>
+
+                    </li>
+                    <br>
+                    <li class="nav-item">
+                        <a routerLink="/admin/profile/seeAllFeedbacks"
+                            class="d-flex align-items-center  mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                            <i class="fa-solid fa-file-contract"></i> &nbsp;  Feedbacks List
+                        </a>
+
+                    </li>
+
+                </ul>
+                <hr>
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle fs-3" id="profile"></i>
+
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                        <li><a class="dropdown-item" routerLink="/admin/profile/deleteProfile"><i
+                                    class="fas fa-user-times"></i>&nbsp;Delete Profile</a></li>
+                        <li><a class="dropdown-item" routerLink="/admin/profile/showProfile">Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" (click)="logout()" routerLink="/login"><i
+                                    class="fas fa-sign-out"></i>&nbsp;Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Main Content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
+            <!-- Your main content goes here -->
+            <div class="container">
+                <router-outlet>
+                </router-outlet>
+
+            </div>
+        </main>
+    </div>
+</div>
