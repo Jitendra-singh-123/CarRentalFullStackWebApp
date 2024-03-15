@@ -28,7 +28,7 @@ namespace CarRentalBackend.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=.;Database=NewRoadReady;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server={your Server name};Database={your Db name};Trusted_Connection=True;");
             }
         }
 
