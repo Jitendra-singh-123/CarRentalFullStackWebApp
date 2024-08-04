@@ -20,6 +20,7 @@ export class AuthService {
 
   }
   login(loginRequest: any): Observable<any> {
+    debugger;
     return this.http.post(this.ApiUrlUser, loginRequest);
   }
   forgetPassword(email: string, newPassword: string,rePassword:string,role:string): Observable<any> {

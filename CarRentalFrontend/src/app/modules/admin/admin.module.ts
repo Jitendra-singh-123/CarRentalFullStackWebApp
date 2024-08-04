@@ -13,7 +13,6 @@ import { SupportComponent } from './Components/profile/support/support.component
 import { SettingsComponent } from './Components/profile/settings/settings.component';
 import { ListCustomerComponent } from './Components/profile/list-customer/list-customer.component';
 import { SeeAllFeedbacksComponent } from './Components/profile/see-all-feedbacks/see-all-feedbacks.component';
-import { FooterComponent } from 'src/app/footer/footer.component';
 import { AllPaymentsComponent } from './Components/profile/all-payments/all-payments.component';
 
 

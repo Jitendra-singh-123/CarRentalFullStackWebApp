@@ -16,10 +16,11 @@ namespace CarRentalBackend.Controllers
     public class ReservationsController : ControllerBase
     {
         private readonly NewRoadReadyContext _context;
-
-        public ReservationsController(NewRoadReadyContext context)
+        private readonly ILogger<WeatherForecastController> _logger;
+        public ReservationsController(NewRoadReadyContext context, ILogger<WeatherForecastController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: api/Reservations

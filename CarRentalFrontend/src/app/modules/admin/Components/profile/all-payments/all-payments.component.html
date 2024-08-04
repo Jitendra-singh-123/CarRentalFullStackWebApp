@@ -1,25 +1,38 @@
-<div class="container">
-    <div *ngFor="let group of payments" class="mt-4 fade-in">
-      <h2>Customer ID: {{ group.customerId }}</h2>
-      <h3>Customer Name: {{ group.customerName }}</h3>
-      <div class="row row-cols-1 row-cols-md-2 g-4">
-        <div *ngFor="let payment of group.payments" class="col">
-          <div class="card shadow fade-in">
-            <div class="card-body">
-              <h5 class="card-title">Payment Details</h5>
-              <ul class="list-group list-group-flush">
-                
-                <li class="list-group-item"><strong>Car Make:</strong> {{ payment.Car.Make }}</li>
-                <li class="list-group-item"><strong>Car Model:</strong> {{ payment.Car.Model }}</li>
-                <li class="list-group-item"><strong>Payment Method:</strong> {{ payment.PaymentMethod }}</li>
-                <li class="list-group-item"><strong>Amount:</strong> {{ payment.Amount }}</li>
-                <li class="list-group-item"><strong>Transaction Date:</strong> {{ payment.TransactionDate }}</li>
-              </ul>
-            </div>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+  .card {
+    margin-bottom: 20px;
+  }
+
+  .card-title {
+    margin-bottom: 15px;
+  }
+
+  .container h3 {
+    margin-top: 30px;
+  }
+</style>
+
+<div class="container mt-4">
+  <h2 class="mb-4 p-2 bg-dark text-white rounded text-center animated-heading">Payment Details</h2>
+  <div *ngFor="let group of payments" class="customer-section">
+    <h3 class="bg-light p-3 rounded">Customer Name: {{ group.customerName }}</h3>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div *ngFor="let payment of group.payments" class="col">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><strong>Car Make:</strong> {{ payment.Car.Make }}</li>
+              <li class="list-group-item"><strong>Car Model:</strong> {{ payment.Car.Model }}</li>
+              <li class="list-group-item"><strong>Payment Method:</strong> {{ payment.PaymentMethod }}</li>
+              <li class="list-group-item"><strong>Amount:</strong> {{ payment.Amount }}</li>
+              <li class="list-group-item"><strong>Transaction Date:</strong> {{ payment.TransactionDate }}</li>
+            </ul>
           </div>
-          <hr>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

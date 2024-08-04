@@ -2,6 +2,7 @@
 using CarRentalBackend.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Serilog;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<NewRoadReadyContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MyConnection") ?? throw new InvalidOperationException("Connection string 'MyConnection' not found.")));
 // Add services to the container.
+
+//builder.Services.AddHttpLogging(options =>
+//{
+//    options.LoggingFields = Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.ResponseStatusCode | Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.RequestHeaders | Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.ResponseBody;
+
+//});
 
 builder.Services.AddControllers().AddJsonOptions(
     options =>
@@ -79,6 +86,7 @@ if (app.Environment.IsDevelopment())
 app.UseCors(options => options.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader());
 app.UseAuthentication();
 
+//app.UseHttpLogging();
 IConfiguration configuration = app.Configuration;
 IWebHostEnvironment environment = app.Environment;
 app.UseHttpsRedirection();

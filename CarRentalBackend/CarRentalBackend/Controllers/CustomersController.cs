@@ -15,10 +15,11 @@ namespace CarRentalBackend.Controllers
     public class CustomersController : ControllerBase
     {
         private readonly NewRoadReadyContext _context;
-
-        public CustomersController(NewRoadReadyContext context)
+        private readonly ILogger<WeatherForecastController> _logger;
+        public CustomersController(NewRoadReadyContext context, ILogger<WeatherForecastController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: api/Customers
@@ -101,10 +102,6 @@ namespace CarRentalBackend.Controllers
         public async Task<IActionResult> PutCustomer(int loginId, Customer customer)
         {
 
-            var customerId = await _context.Logins
-               .Where(l => l.LoginId == loginId)
-               .Select(l => l.CustomerId)
-               .FirstOrDefaultAsync();
             if (loginId != customer.CustomerId)
             {
                 return BadRequest();

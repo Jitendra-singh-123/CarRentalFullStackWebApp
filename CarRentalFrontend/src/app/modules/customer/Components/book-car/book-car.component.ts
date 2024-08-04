@@ -22,6 +22,8 @@ export class BookCarComponent {
   ValidateForm!: FormGroup;
   paymentId = 0;
   feedbacks: any;
+  showSpecifications = false;
+  showMaintenanceStatus = false;
   //reservationStatus="Waiting";
   constructor(private service: CustomerService, private activatedRoute: ActivatedRoute, private fb: FormBuilder, private router: Router, private toastr: ToastrService) {
 
@@ -122,13 +124,15 @@ export class BookCarComponent {
 
 
   getCarFeedbacks() {
-    debugger;
     this.service.getCarFeedbacks(this.carId).subscribe((res) => {
       console.log(res);
-      this.feedbacks = res;
+      this.feedbacks = res.map(feedback => ({
+        ...feedback,
+        expanded: false
+      }));
     }, (error: HttpErrorResponse) => {
       if (error.error === "No reviews available for this car")
-      this.toastr.info('No feedback for this car.', 'Notification');
+        this.toastr.info('No feedback for this car.', 'Notification');
       else {
         alert("Error Occured Showing Reviews " + error);
       }

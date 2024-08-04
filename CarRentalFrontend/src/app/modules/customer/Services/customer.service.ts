@@ -23,7 +23,7 @@ export class CustomerService {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + StorageService.getToken());
     return this.http.get(this.ApiURL, { headers });
   }
-  getCarById(id: number): Observable<any> {
+  getCarById(id: any): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + StorageService.getToken());
     return this.http.get(`${this.ApiURL}/${id}`, { headers });
   }
