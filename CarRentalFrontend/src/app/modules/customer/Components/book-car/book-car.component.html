@@ -1,34 +1,52 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
 <div class="album py-5 bg-body-tertiary" id="left" [formGroup]="ValidateForm" *ngIf="car"
     style="font-family: 'Roboto', sans-serif;">
-    <marquee behavior="scroll" direction="left" scrollamount="10" class="book-your-car">
-        <h2 class="book-your-car-heading" style=" font-family: 'Brush Script MT', cursive;">Book Your Car</h2>
-    </marquee>
     <!-- Book car Column -->
     <div class="container mt-4">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <div class="col">
-                <div class="card h-100 shadow-sm magnify-on-hover ">
+                <div class="card h-100 shadow-sm magnify-on-hover">
                     <img [src]="car.ImageUrl.startsWith('https') ? car.ImageUrl : processedImage" alt="Car image"
                         class="card-img-top">
-
                     <div class="card-body">
-                        <h5 class="card-title"><b>{{ car.Make }} {{ car.Model }}</b></h5><br>
-                        <p class="card-text"><b>Location:</b> {{ car.Location }}</p>
-                        <p class="card-text"><b>Specifications:</b> {{ car.Specifications }}</p>
-                        <p class="card-text"><b>Daily Rate:</b> {{ car.DailyRate }}</p>
-                        <p class="card-text"><b>Available From:</b> {{ car.AvailableFrom|date: 'dd-MM-yyyy' }}</p>
-                        <p class="card-text"><b>Available To:</b> {{ car.AvailableTo|date: 'dd-MM-yyyy' }}</p>
+                        <h5 class="card-title text-bg-dark car-make-model"><b>{{ car.Make }} {{ car.Model }}</b></h5>
+                   
+                        <p class="card-text mt-2"><b>Location:</b> {{ car.Location }}</p>
+
+                        <!-- Collapsible Specifications -->
+                        <p class="card-text collapsible-header" (click)="showSpecifications = !showSpecifications">
+                            <b>Specifications</b>
+                            <i class="fas"
+                                [ngClass]="{'fa-chevron-down': !showSpecifications, 'fa-chevron-up': showSpecifications}"></i>
+                        </p>
+                        <div class="collapsible-content" [ngClass]="{'expanded': showSpecifications}">
+                            <p class="card-text">{{ car.Specifications }}</p>
+                        </div>
+
+                        <!-- Collapsible Maintenance Status -->
+                        <p class="card-text collapsible-header"
+                            (click)="showMaintenanceStatus = !showMaintenanceStatus">
+                            <b>Maintenance Status</b>
+                            <i class="fas"
+                                [ngClass]="{'fa-chevron-down': !showMaintenanceStatus, 'fa-chevron-up': showMaintenanceStatus}"></i>
+                        </p>
+                        <div class="collapsible-content" [ngClass]="{'expanded': showMaintenanceStatus}">
+                            <p class="card-text">{{ car.MaintenanceStatus }}</p>
+                        </div>
+
+                        <p class="card-text mt-2"><b>Daily Rate:</b> {{ car.DailyRate }}</p>
+                        <p class="card-text"><b>Available From:</b> {{ car.AvailableFrom | date: 'dd-MM-yyyy' }}</p>
+                        <p class="card-text"><b>Available To:</b> {{ car.AvailableTo | date: 'dd-MM-yyyy' }}</p>
                         <p class="card-text"><b>Car Plate Number:</b> {{ car.CarPlateNumber }}</p>
                         <p class="card-text"><b>Status:</b> {{ car.Status }}</p>
-
-
                         <p class="card-text"><b>Year:</b> {{ car.Year }}</p>
                         <p class="card-text"><b>Color:</b> {{ car.Color }}</p>
                         <p class="card-text"><b>Mileage:</b> {{ car.Mileage }}</p>
                         <p class="card-text"><b>Car Type:</b> {{ car.CarType }}</p>
                         <p class="card-text"><b>Transmission Type:</b> {{ car.Transmission }}</p>
-                        <p class="card-text"><b>Maintenance Status:</b> {{ car.MaintenanceStatus }}</p>
+
                         <br>
                         <h5><b>Book Car Date:</b></h5>
                         <div class="form-group">
@@ -75,14 +93,12 @@
                             <input type="number" class="form-control" id="PaidAmount" [value]="totalPayment" readonly>
                         </div>
 
-
                         <div class="d-flex justify-content-between align-items-center mt-3">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-outline-secondary"
                                     (click)="bookCar(ValidateForm.value)" [disabled]="ValidateForm.invalid">
                                     <i class="fa-solid fa-car"></i> Book your car
                                 </button>
-
                             </div>
                             <small class="text-muted">{{car.CarCreateTime}}</small>
                         </div>
@@ -91,42 +107,51 @@
             </div>
 
 
-
-
             <!-- Feedback column -->
             <div class="col-md-8">
                 <div class="card h-100 shadow-sm">
                     <div class="card-body">
-                        <h2 class="mb-4 p-2 bg-dark text-white rounded text-center">Feedback for {{ car.Make }} {{
-                            car.Model }}</h2>
+                        <h2 class="mb-4 p-2 bg-dark text-white rounded text-center">Feedback for {{ car.CarMake }} {{ car.CarModel }}</h2>
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title text-center mb-4">Customer Feedback</h5>
-
                                 <div class="feedback-list">
                                     <div *ngFor="let feedback of feedbacks" class="feedback-item">
-                                        <div class="customer-info">
-                                            <h5 class="customer-name"><b>{{ feedback.CustomerName }}</b></h5>
-                                            <div class="customer-rating">
-                                                <b>Rating:</b> {{ feedback.Rating }}/5
-                                                <span *ngFor="let star of [1, 2, 3, 4, 5]">
-                                                    <span *ngIf="star <= feedback.Rating" class="fa fa-star checked"></span>
-                                                    <span *ngIf="star > feedback.Rating" class="fa fa-star"></span>
-                                                </span>
+                                        <div class="customer-info d-flex align-items-center">
+                                            <img src="../../../../../assets/UserImage.png" alt="User image" class="rounded-circle user-image mr-3">
+                                            <div>
+                                                <h5 class="customer-name mb-0"><b>{{ feedback.CustomerName }}</b></h5>
+                                                <div class="customer-rating">
+                                                    <b>Rating:</b> {{ feedback.Rating }}/5
+                                                    <span *ngFor="let star of [1, 2, 3, 4, 5]">
+                                                        <span *ngIf="star <= feedback.Rating" class="fa fa-star checked"></span>
+                                                        <span *ngIf="star > feedback.Rating" class="fa fa-star"></span>
+                                                    </span>
+                                                </div>
                                             </div>
-
-
                                         </div>
-
-                                        <div class="review-info">
-                                            <p class="review"><b>Review: </b>{{ feedback.Review }}</p>
+                                        <div class="review-info mt-2">
+                                            <p class="review">
+                                                <b>Review: </b>
+                                                <span *ngIf="feedback.Review.split(' ').length <= 20">
+                                                    {{ feedback.Review }}
+                                                </span>
+                                                <span *ngIf="feedback.Review.split(' ').length > 20">
+                                                    <span *ngIf="!feedback.expanded">
+                                                        {{ feedback.Review | slice:0:feedback.Review.split(' ', 20).join(' ').length }}...
+                                                        <a href="javascript:void(0)" (click)="feedback.expanded = !feedback.expanded">Read more</a>
+                                                    </span>
+                                                    <span *ngIf="feedback.expanded">
+                                                        {{ feedback.Review }}
+                                                        <a href="javascript:void(0)" (click)="feedback.expanded = !feedback.expanded">Read less</a>
+                                                    </span>
+                                                </span>
+                                            </p>
                                             <div class="review-date">
                                                 <i>Review Date</i>
-                                                <p class="text-right"><i>{{ feedback.ReviewDateTime | date: 'dd-MM-yyyy'
-                                                        }}</i></p>
+                                                <p class="text-right"><i>{{ feedback.ReviewDateTime | date: 'dd-MM-yyyy' }}</i></p>
                                             </div>
                                         </div>
-
                                         <hr>
                                     </div>
                                     <div *ngIf="!feedbacks || feedbacks.length === 0" class="no-feedbacks">
@@ -138,8 +163,7 @@
                     </div>
                 </div>
             </div>
-
+            <!-- End Feedback Section -->
         </div>
-
     </div>
 </div>

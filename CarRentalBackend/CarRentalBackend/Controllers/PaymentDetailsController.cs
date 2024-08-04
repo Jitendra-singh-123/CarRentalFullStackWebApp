@@ -15,10 +15,11 @@ namespace CarRentalBackend.Controllers
     public class PaymentDetailsController : ControllerBase
     {
         private readonly NewRoadReadyContext _context;
-
-        public PaymentDetailsController(NewRoadReadyContext context)
+        private readonly ILogger<WeatherForecastController> _logger;
+        public PaymentDetailsController(NewRoadReadyContext context, ILogger<WeatherForecastController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: api/PaymentDetails

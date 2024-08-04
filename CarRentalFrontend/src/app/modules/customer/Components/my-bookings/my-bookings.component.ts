@@ -40,6 +40,9 @@ export class MyBookingsComponent {
             booking.processedImage = 'data:image/jpeg;base64,' + booking.ImageUrl;
             res.ImageUrl=booking.processedImage;
           }
+          booking.PickUpTime = this.formatDate(booking.PickUpTime);
+          booking.DropOffTime = this.formatDate(booking.DropOffTime);
+          booking.ReservationTime=this.formatDate(booking.ReservationTime);
         }
         this.bookings=res;
 
@@ -129,6 +132,14 @@ export class MyBookingsComponent {
     this.router.navigate(['/customer/payments'], { state: { reservation } });
   }
 
+
+  formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+    return `${year}-${month}-${day}`;
+  }
 }
 
 

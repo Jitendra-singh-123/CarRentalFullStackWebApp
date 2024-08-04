@@ -3,25 +3,71 @@
     <div class="row">
         <div class="col-md-4 mb-4" *ngFor="let reservation of bookings">
             <div class="card h-100 shadow-sm">
-                <div class="card-body">
-                    <img [src]="reservation.processedImage" alt="Car image" class="card-img-top">
-                    <h5 class="card-title mb-3"><b>{{ reservation.CarMake }} {{ reservation.CarModel }}</b></h5>
+                <div class="card-body d-flex flex-column">
+                    <img [src]="reservation.processedImage" alt="Car image" class="card-img-top fixed-image-size">
+                    <h5 class="card-title mb-3  car-make-model text-bg-dark"><b>{{ reservation.CarMake }} {{ reservation.CarModel }}</b></h5>
                     <hr>
                     <p class="card-text mb-1"><strong>Pickup Date:</strong> {{ reservation.PickUpTime | date:'dd-MM-yyyy' }}</p>
                     <p class="card-text mb-1"><strong>Drop-off Date:</strong> {{ reservation.DropOffTime | date:'dd-MM-yyyy' }}</p>
-                    <p class="card-text mb-1"><strong>Daily Rate:</strong> {{ reservation.DailyRate | currency:'INR'}}</p>
-                    <p class="card-text mb-0"><strong>Reservation Status:&nbsp;</strong>
+                    <p class="card-text mb-1"><strong>Daily Rate:</strong> {{ reservation.DailyRate | currency:'INR' }}</p>
+                    <p class="card-text mb-1"><strong>Reservation Status:&nbsp;</strong>
                         <span *ngIf="reservation.ReservationStatus === 'Accepted'" class="text-success"><i class="fas fa-check-circle"></i>&nbsp;{{ reservation.ReservationStatus }}</span>
                         <span *ngIf="reservation.ReservationStatus === 'Waiting'" class="text-warning"><i class="fa fa-spinner " aria-hidden="true"></i> &nbsp;{{ reservation.ReservationStatus }}</span>
                         <span *ngIf="reservation.ReservationStatus === 'Rejected'" class="text-danger">&nbsp;{{ reservation.ReservationStatus }}</span>
-                    </p><br><br>
-                    <div class="mt-auto d-flex justify-content-between">
-                        <button *ngIf=" reservation.ReservationStatus ==='Accepted' && (reservation.PaymentId === null || reservation.PaymentId === 0) && (reservation.PaidAmount === 0 || reservation.PaidAmount === null) " (click)="navigate(reservation)" class="btn btn-primary btn-sm payment">Make Payment</button>
-                        <span *ngIf="reservation.ReservationStatus === 'Accepted' && reservation.PaidAmount != 0" class="text-success payment-done"><i class="fa fa-flag" aria-hidden="true"></i> Payment Done</span>
-                        <button class="btn btn-outline-dark" type="button" routerLink="/customer/postFeedback/{{reservation.CarID}}">Post Feedback</button>
+                    </p>
+                    
+                    <p class="card-text mb-4" *ngIf="reservation.ReservationStatus === 'Accepted'" ><strong >Payment Status:&nbsp;</strong>
+                        
+                        <span *ngIf="reservation.ReservationStatus === 'Accepted' && (reservation.PaidAmount != 0 && reservation.PaidAmount!=null)" class="text-success payment-done"><i class="fa fa-flag" aria-hidden="true"></i> Payment Done</span>
+                        <span *ngIf="reservation.ReservationStatus === 'Accepted' && (reservation.PaymentId === null || reservation.PaymentId === 0) && (reservation.PaidAmount === 0 || reservation.PaidAmount === null)" class="text-danger"><i class="fa fa-times-circle" aria-hidden="true"></i> Payment Pending</span>
+                    </p>
+                    <div class="mt-auto d-flex justify-content-between align-items-center btn-container">
+                        <button *ngIf="reservation.ReservationStatus === 'Accepted' && (reservation.PaymentId === null || reservation.PaymentId === 0) && (reservation.PaidAmount === 0 || reservation.PaidAmount === null)" (click)="navigate(reservation)" class="btn btn-primary btn-sm payment-btn">Make Payment</button>
+                        <button *ngIf="reservation.ReservationStatus === 'Accepted'" class="btn btn-outline-dark btn-sm feedback-btn" type="button" routerLink="/customer/postFeedback/{{reservation.CarID}}">Post Feedback</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+.fixed-image-size {
+    width: 100%;
+    height: 200px; /* Adjust the height as needed */
+    object-fit: cover;
+}
+
+.car-make-model {
+    font-size: 1.5em; /* Larger font size */
+    color: #007bff; /* Blue color */
+    text-align: center; /* Center align */
+    margin-bottom: 15px; /* Add some space below */
+    margin-top: 5px;
+}
+
+.payment-done {
+  
+    color: green;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    .btn-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-container .payment-btn, 
+    .btn-container .feedback-btn {
+        width: 100%;
+        margin-bottom: 10px; /* Add margin between buttons for vertical layout */
+    }
+}
+</style>

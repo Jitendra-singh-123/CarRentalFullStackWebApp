@@ -21,11 +21,12 @@ namespace CarRentalBackend.Controllers
     {
         private readonly NewRoadReadyContext _context;
         private readonly IConfiguration _configuration;
-
-        public LoginsController(NewRoadReadyContext context, IConfiguration configuration)
+        private readonly ILogger<WeatherForecastController> _logger;
+        public LoginsController(NewRoadReadyContext context, IConfiguration configuration, ILogger<WeatherForecastController> logger)
         {
             _context = context;
             _configuration = configuration;
+            _logger = logger;
         }
         // GET: api/Logins
         [HttpGet]
@@ -134,8 +135,8 @@ namespace CarRentalBackend.Controllers
 
 
 
-        // POST: api/Logins
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //POST: api/Logins
+        //To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public IActionResult Authenticate([FromBody] Login user)
         {
@@ -169,6 +170,70 @@ namespace CarRentalBackend.Controllers
 
 
         }
+
+        //    [HttpPost]
+        //    public IActionResult Authenticate([FromBody] Login user)
+        //    {
+        //        var email = user.Email;
+        //        var password = user.Password;
+
+        //        // Search for the user based on the provided email
+        //        var foundUser = _context.Logins.FirstOrDefault(u => u.Email == email);
+
+        //        if (foundUser == null)
+        //        {
+        //            // If no user is found with the provided email, return Unauthorized
+        //            return Unauthorized();
+        //        }
+
+        //        // Check if the provided password matches the password stored in the database
+        //        if (foundUser.Password != password)
+        //        {
+        //            // If passwords don't match, return Unauthorized
+        //            return Unauthorized();
+        //        }
+
+        //        // Determine the role of the user
+        //        var role = foundUser.Role;
+
+        //        // Create claims for the JWT token
+        //        var claims = new List<Claim>
+        //{
+        //    new Claim(JwtRegisteredClaimNames.Sub, foundUser.Email),
+        //    new Claim(JwtRegisteredClaimNames.Email, foundUser.Email),
+        //    new Claim(ClaimTypes.Role, role)
+        //};
+
+        //        var issuer = _configuration["Jwt:Issuer"];
+        //        var audience = _configuration["Jwt:Audience"];
+        //        var key = Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]);
+        //        var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature);
+
+        //        // Set expiration time for the token
+        //        var expires = DateTime.UtcNow.AddHours(1);
+
+        //        // Create token descriptor
+        //        var tokenDescriptor = new SecurityTokenDescriptor
+        //        {
+        //            Subject = new ClaimsIdentity(claims),
+        //            SigningCredentials = signingCredentials,
+        //            Expires = expires,
+        //            Issuer = issuer,
+        //            Audience = audience
+        //        };
+
+        //        var tokenHandler = new JwtSecurityTokenHandler();
+
+        //        // Create JWT token
+        //        var token = tokenHandler.CreateToken(tokenDescriptor);
+
+        //        // Write the token to a string
+        //        var jwtToken = tokenHandler.WriteToken(token);
+
+        //        // Return the JWT token along with user information
+        //        return Ok(new { jwtToken, user = new { Email = foundUser.Email, Role = foundUser.Role , LoginId = foundUser.LoginId} });
+        //    }
+
 
 
         // DELETE: api/Logins/5

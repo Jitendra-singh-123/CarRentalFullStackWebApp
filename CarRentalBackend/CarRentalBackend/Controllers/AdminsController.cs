@@ -16,9 +16,11 @@ namespace CarRentalBackend.Controllers
     {
         private readonly NewRoadReadyContext _context;
 
-        public AdminsController(NewRoadReadyContext context)
+        private readonly ILogger<WeatherForecastController> _logger;
+        public AdminsController(NewRoadReadyContext context, ILogger<WeatherForecastController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: api/Admins

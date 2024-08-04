@@ -32,7 +32,7 @@ export class LoginComponent {
   }
 
   login() {
-
+    debugger;
     console.log(this.loginForm.value);
     this.authService.login(this.loginForm.value).subscribe(
       (response) => {

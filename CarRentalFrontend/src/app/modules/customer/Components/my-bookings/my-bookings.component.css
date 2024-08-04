@@ -1,14 +1,17 @@
 #trash:hover{
     transform: scale(1.2);
 }
-
-.payment-done {
-    font-weight: bold;
-    color: green;
-    animation-name: fadeIn;
-    animation-duration: 1s;
+#update:hover{
+    transform: scale(1.2);
 }
 
+.car-make-model {
+    margin-top: 5px;
+    font-size: 1.5em; /* Larger font size */
+    color: black; /* Blue color */
+    text-align: center; /* Center align */
+    margin-bottom: 5px; /* Add some space below */
+}
 @keyframes fadeIn {
     0% { opacity: 0; }
     100% { opacity: 1; }

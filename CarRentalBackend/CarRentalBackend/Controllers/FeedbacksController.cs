@@ -15,10 +15,11 @@ namespace CarRentalBackend.Controllers
     public class FeedbacksController : ControllerBase
     {
         private readonly NewRoadReadyContext _context;
-
-        public FeedbacksController(NewRoadReadyContext context)
+        private readonly ILogger<WeatherForecastController> _logger;
+        public FeedbacksController(NewRoadReadyContext context, ILogger<WeatherForecastController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: api/Feedbacks

@@ -22,6 +22,12 @@
 .text-center {
     text-align: center;
 }
+.car-make-model {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 15px; /* Add margin below the make/model */
+  }
+  
 
 .mb-4 {
     margin-bottom: 1.5rem;
@@ -38,4 +44,49 @@
 
 .book-your-car-heading {
     margin: 0;
+}
+
+.car-make-model {
+    margin-top: 5px;
+    font-size: 1.5em; /* Larger font size */
+    color: black; /* Blue color */
+    text-align: center; /* Center align */
+    margin-bottom: 5px; /* Add some space below */
+}
+
+.collapsible-header {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.collapsible-header:hover {
+    background-color: #f9f9f9;
+}
+
+.collapsible-content {
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    max-height: 0;
+    opacity: 0;
+}
+
+.collapsible-content.expanded {
+    max-height: 500px; /* adjust as needed */
+    opacity: 1;
+    transition: max-height 0.5s ease-in, opacity 0.5s ease-in;
+}
+
+
+.user-image {
+    width: 50px; /* adjust size as needed */
+    height: 50px; /* adjust size as needed */
+    object-fit: cover;
+    margin-right: 10px; /* spacing between image and name */
 }
